@@ -12,7 +12,7 @@ end
 
 for fn in (rand!, randn!, randexp!)
    Random.seed!(0)
-   traced = fn(:addr, zeros(5))
+   traced = fn(:addr => :subaddr, zeros(5))
    Random.seed!(0)
    untraced = fn(zeros(5))
    @test traced == untraced
@@ -28,7 +28,7 @@ end
 
 for fn in (randperm!, randcycle!)
    Random.seed!(0)
-   traced = fn(:addr, Vector{Int}(undef, 5))
+   traced = fn(:addr => 0, Vector{Int}(undef, 5))
    Random.seed!(0)
    untraced = fn(Vector{Int}(undef, 5))
    @test traced == untraced
@@ -74,7 +74,7 @@ end
 
 for fn in (rand!, randn!, randexp!)
    Random.seed!(rng, 42)
-   traced = fn(rng, :addr, zeros(5))
+   traced = fn(rng, :addr => :subaddr, zeros(5))
    Random.seed!(rng, 42)
    untraced = fn(rng, zeros(5))
    @test traced == untraced
@@ -90,7 +90,7 @@ end
 
 for fn in (randperm!, randcycle!)
    Random.seed!(rng, 42)
-   traced = fn(rng, :addr, Vector{Int}(undef, 5))
+   traced = fn(rng, :addr => 0, Vector{Int}(undef, 5))
    Random.seed!(rng, 42)
    untraced = fn(rng, Vector{Int}(undef, 5))
    @test traced == untraced
