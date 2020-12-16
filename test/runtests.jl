@@ -1,5 +1,16 @@
 using TracedRandom, Random, Test
 
+@testset "Addressed function calls" begin
+
+gaussian_mixture(μs) = randn(:z) + μs[rand(:k, 1:length(μs))]
+Random.seed!(0)
+traced = rand(:y, gaussian_mixture, [1, 10, 100])
+Random.seed!(0)
+untraced = gaussian_mixture([1, 10, 100])
+@test traced == untraced
+
+end
+
 @testset "Addressed calls with global RNG" begin
 
 for fn in (rand, randn, randexp, bitrand, randstring)
