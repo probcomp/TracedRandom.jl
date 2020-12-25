@@ -32,7 +32,7 @@ julia> rand(:x, gaussian_mixture, [1, 10])
 
 By default, the addresses (`:x`, `:z`, `:k` and `:perm` in the examples above)
 are ignored, but they can be intercepted via meta-programming
-(see [`Genify.jl`](https://github.com/probcomp/Genify.jl])) to support inference
+(see [`Genify.jl`](https://github.com/probcomp/Genify.jl)) to support inference
 in probabilistic programming systems such as [`Gen`](https://www.gen.dev/).
 Addresses can be specified as `Symbol`s, or as pairs from symbols
 to other types (`Pair{Symbol,<:Any}`).
