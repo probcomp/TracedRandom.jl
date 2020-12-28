@@ -2,11 +2,26 @@ module TracedRandom
 
 using Random
 
-export rand!, randn!, randexp, randexp!,
+export here, rand!, randn!, randexp, randexp!,
        bitrand, randstring, randsubseq, randsubseq!,
        shuffle, shuffle!, randperm, randperm!, randcycle, randcycle!
 
 const Address = Union{Symbol,Pair{Symbol}}
+
+struct Here end
+
+"""
+    here
+
+Special address that refers to the address namespace of the calling context.
+Supported when [`rand`](@ref) is called on a non-primitive stochastic function,
+causing all named random variables sampled by that function to be spliced into
+the address namespace of the calling context. 
+"""
+const here = Here()
+
+Base.rand(::Here, fn::Function, args...) = fn(args...)
+Base.rand(::AbstractRNG, ::Here, fn::Function, args...) = fn(args...)
 
 Base.rand(::Address, fn::Function, args...) = fn(args...)
 Base.rand(::AbstractRNG, ::Address, fn::Function, args...) = fn(args...)

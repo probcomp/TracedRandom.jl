@@ -9,6 +9,12 @@ Random.seed!(0)
 untraced = gaussian_mixture([1, 10, 100])
 @test traced == untraced
 
+Random.seed!(0)
+traced = rand(here, gaussian_mixture, [1, 10, 100])
+Random.seed!(0)
+untraced = gaussian_mixture([1, 10, 100])
+@test traced == untraced
+
 end
 
 @testset "Addressed calls with global RNG" begin

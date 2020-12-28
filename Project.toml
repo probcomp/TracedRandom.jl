@@ -1,7 +1,7 @@
 name = "TracedRandom"
 uuid = "03576162-b2ff-4022-a931-e67b9900fd45"
 authors = ["Xuan <tanqazx@gmail.com>"]
-version = "0.1.0"
+version = "0.1.1"
 
 [deps]
 Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
